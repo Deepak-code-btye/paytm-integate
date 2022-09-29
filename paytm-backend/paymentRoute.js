@@ -88,10 +88,9 @@ router.post("/callback", (req, res) => {
 });
 
 router.post("/payment", (req, res) => {
-  const { amount, email } = req.body;
-
+  const { amount, mobile_no } = req.body;
+  console.log(req.body);
   /* import checksum generation utility */
-  const totalAmount = JSON.stringify(amount);
   var params = {};
 
   /* initialize an array */
@@ -101,10 +100,9 @@ router.post("/payment", (req, res) => {
     (params["INDUSTRY_TYPE_ID"] = process.env.PAYTM_INDUSTRY_TYPE_ID),
     (params["ORDER_ID"] = uuidv4()),
     (params["CUST_ID"] = process.env.PAYTM_CUST_ID),
-    (params["TXN_AMOUNT"] = totalAmount),
+    (params["TXN_AMOUNT"] = amount),
     (params["CALLBACK_URL"] = "http://localhost:4000/api/callback"),
-    (params["EMAIL"] = email),
-    (params["MOBILE_NO"] = "9876543210");
+    (params["MOBILE_NO"] = mobile_no);
 
   /**
    * Generate checksum by parameters we have
