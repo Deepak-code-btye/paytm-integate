@@ -65,8 +65,9 @@ const App = () => {
   };
 
   const onSubmit = (data) => {
-    console.log(data);
+    // console.log(data);
     getData(data).then((response) => {
+      console.log(response);
       var information = {
         action: "https://securegw-stage.paytm.in/order/process",
         params: response,
